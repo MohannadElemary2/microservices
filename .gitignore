@@ -1,0 +1,15 @@
+/registration/node_modules
+/registration/public/hot
+/registration/public/storage
+/registration/storage/*.key
+/registration/vendor
+/registration/.env
+/registration/.env.backup
+/registration/.phpunit.result.cache
+/registration/docker-compose.override.yml
+/registration/Homestead.json
+/registration/Homestead.yaml
+/registration/npm-debug.log
+/registration/yarn-error.log
+/registration/.idea
+/registration/.vscode
