@@ -13,3 +13,5 @@
 /registration/yarn-error.log
 /registration/.idea
 /registration/.vscode
+
+__pycache__

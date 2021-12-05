@@ -1,0 +1,1 @@
+TOPIC_EMAIL_NOTIFICATIONS = "email-notifications"
