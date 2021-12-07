@@ -19,16 +19,16 @@ class Command(BaseCommand):
             deserialized_data = json.loads(message.value)
 
             notification = Notification(
-                user_id=deserialized_data['message']['user_id'],
-                date=deserialized_data['message']['date']
+                user_id=deserialized_data['user_id'],
+                date=deserialized_data['date']
             )
             notification.save()
 
             send_mail(
                 'Welcome To Our Site!',
-                'Hello ' + deserialized_data['message']['name'],
+                'Hello ' + deserialized_data['name'],
                 settings.EMAIL_HOST_USER,
-                [deserialized_data['message']['email']],
+                [deserialized_data['email']],
                 fail_silently=False,
             )
             

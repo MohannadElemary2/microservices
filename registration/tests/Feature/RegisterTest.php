@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use Illuminate\Http\Response;
+use Junges\Kafka\Facades\Kafka;
 use Tests\TestCase;
 
 class RegisterTest extends TestCase
@@ -23,6 +24,7 @@ class RegisterTest extends TestCase
      */
     public function will_fail_with_validation_errors_when_email_is_missing()
     {
+        Kafka::fake();
         $response = $this->json(
             'POST',
             route(self::ROUTE_REGISTER),
@@ -44,6 +46,7 @@ class RegisterTest extends TestCase
      */
     public function will_fail_with_validation_errors_when_password_is_missing()
     {
+        Kafka::fake();
         $response = $this->json(
             'POST',
             route(self::ROUTE_REGISTER),
@@ -66,6 +69,7 @@ class RegisterTest extends TestCase
      */
     public function will_fail_with_exist_email()
     {
+        Kafka::fake();
         $user = $this->createUser();
 
         $response = $this->json(
@@ -91,6 +95,7 @@ class RegisterTest extends TestCase
      */
     public function will_register_successfully_with_correct_credentials()
     {
+        Kafka::fake();
         $response = $this->json(
             'POST',
             route(self::ROUTE_REGISTER),
@@ -106,5 +111,7 @@ class RegisterTest extends TestCase
         $this->assertArrayHasKey('data', $response->json());
         $this->assertArrayHasKey('id', $response->json()['data']);
         $this->assertArrayHasKey('created_at', $response->json()['data']);
+
+        Kafka::assertPublished();
     }
 }
