@@ -15,6 +15,8 @@ class Command(BaseCommand):
             api_version=(0, 10)
         )
 
+        print("Command is running now")
+
         for message in consumer:
             deserialized_data = json.loads(message.value)
 
@@ -31,4 +33,6 @@ class Command(BaseCommand):
                 [deserialized_data['email']],
                 fail_silently=False,
             )
+
+            print("Email sent to " + deserialized_data['email'])
             

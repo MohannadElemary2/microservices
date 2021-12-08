@@ -80,6 +80,9 @@ DATABASES = {
         'ENGINE': 'djongo',
         'NAME': 'notifications',
         'ENFORCE_SCHEMA': False,
+        'CLIENT': {
+           'host': 'mongo',
+        }
     }
 }
 
@@ -127,7 +130,7 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-KAFKA_BOOTSTRAP_SERVER = 'localhost:9092'
+KAFKA_BOOTSTRAP_SERVER = 'kafka:9092'
 
 DEFAULT_FROM_EMAIL = 'mohannadelemary92@gmail.com'
 
@@ -137,3 +140,16 @@ EMAIL_HOST_USER = 'mohannadelemary92@gmail.com'
 EMAIL_HOST_PASSWORD = 'oxgjielnvssslvga'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+
+LOGPIPE = {
+    'OFFSET_BACKEND': 'logpipe.backend.kafka.ModelOffsetStore',
+    'CONSUMER_BACKEND': 'logpipe.backend.kafka.Consumer',
+    'PRODUCER_BACKEND': 'logpipe.backend.kafka.Producer',
+    'KAFKA_BOOTSTRAP_SERVERS': [
+        'kafka:9092'
+    ],
+    'KAFKA_CONSUMER_KWARGS': {
+        'group_id': 'django-logpipe',
+    },
+}
